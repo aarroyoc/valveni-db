@@ -4,4 +4,5 @@
 
 save_user :-
     v_open("c", [people/3], VS),
-    v_assert(VS, people("Adrián", 23, "Valladolid")).
+    v_assert(VS, people("Adrián", 23, "Valladolid")),
+    user:people(X,Y,Z).

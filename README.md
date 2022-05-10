@@ -38,6 +38,14 @@ This will add the predicate to the database (in reality, just to the oplog) and 
    X = "Adrián", Y = 23, Z = "Valladolid".
 ```
 
+If you're inside a module, you need to prepend it with `user:` as the predicates are loaded into the user module and are not directly accesible:
+
+```
+?- user:people(X, Y, Z).
+   X = "Adrián", Y = 23, Z = "Valladolid".
+```
+
+
 To remove a predicate, use `v_retract/2`.
 
 ```
