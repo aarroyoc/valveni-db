@@ -31,13 +31,13 @@
 	valveni:v_retract(VS, people("Adrián", 23, "Valladolid")),
 	\+ user:people("Adrián", 23, "Valladolid").
 
-    test(assert_reload, true) :-
+    test(assert_reload) :-
         reset_state,
 	valveni:v_open("test", [people/3], VS),
 	valveni:v_assert(VS, people("Adrián", 23, "Valladolid")),
 	findall(N, user:people(N, _, _), Ns),
 	lists:length(Ns, 1).
-	% valveni:v_open("test", [people/3], VS).
+	%valveni:v_open("test", [people/3], VS).
 	%\+ files:file_exists("test.oplog.pl").
 	/*findall(N, user:people(N, _, _), Ns),
 	lists:length(Ns, 1),

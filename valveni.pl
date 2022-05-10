@@ -9,6 +9,7 @@
 v_open(DbName, Preds, VState) :-
     append(DbName, ".db.pl", DbFile),
     append(DbName, ".oplog.pl", OplogFile),
+    retract_preds(Preds),
     (file_exists(DbFile) ->
 	 load_db_file(DbFile)
     ;    true
@@ -22,6 +23,12 @@ v_open(DbName, Preds, VState) :-
     ;    true
     ),
     VState = valveni(DbName, Preds).
+
+retract_preds([]).
+retract_preds([F/N|Xs]) :-
+    functor(X, F, N),
+    retractall(user:X),
+    retract_preds(Xs).
 
 load_db_file(DbFile) :-
     atom_chars(DbFileA, DbFile),
